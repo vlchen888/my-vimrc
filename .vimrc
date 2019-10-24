@@ -13,9 +13,11 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'altercation/vim-colors-solarized'
-Bundle 'christoomey/vim-tmux-navigator'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ambv/black'
 Plugin 'haya14busa/incsearch.vim'
+Plugin 'dense-analysis/ale'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -69,3 +71,18 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+
+" ALE stuff
+let g:ale_fixers = {
+\   'c': ['clang-format', 'remove_trailing_lines']
+\}
+
+let g:ale_fix_on_save = 1
+
+"https://github.com/kien/ctrlp.vim/issues/646
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+    \ 'AcceptSelection("t")': ['<cr>'],
+    \ }
+
