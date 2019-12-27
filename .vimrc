@@ -11,13 +11,15 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-commentary'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ambv/black'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'dense-analysis/ale'
 
+" tmp
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'junegunn/fzf.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -75,14 +77,18 @@ map g# <Plug>(incsearch-nohl-g#)
 
 " ALE stuff
 let g:ale_fixers = {
-\   'c': ['clang-format', 'remove_trailing_lines']
+\   'c': ['clang-format', 'remove_trailing_lines'],
+\   'cpp': ['clang-format', 'remove_trailing_lines'],
+\   'python': ['black', 'remove_trailing_lines', 'trim_whitespace']
 \}
 
 let g:ale_fix_on_save = 1
 
-"https://github.com/kien/ctrlp.vim/issues/646
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
-    \ 'AcceptSelection("t")': ['<cr>'],
-    \ }
+"https://stackoverflow.com/questions/17936130/vim-undo-undo-changes-after-file-write
+set undofile
+set undodir=$HOME/.vim/undo
 
+" https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9
+map ; :Files<CR>
+" https://github.com/junegunn/fzf.vim/issues/456#issuecomment-337973140
+set rtp+=/usr/local/opt/fzf
